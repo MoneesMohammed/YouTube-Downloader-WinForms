@@ -540,8 +540,10 @@ namespace Downloader_YouTube_Videos
             if (string.IsNullOrEmpty(_DownloadPath))
                 return;
 
-            string filePath = Path.Combine(_DownloadPath, lblTitle.Text + $".{cbExt.Text}");
+            string safeTitle = SanitizeFileName(lblTitle.Text);
 
+            string filePath = Path.Combine(_DownloadPath,$"{safeTitle}.{cbExt.Text}");
+    
             if (File.Exists(filePath))// is already exist
             {
                 MessageBox.Show($"The video already exists in \n {_DownloadPath}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -565,7 +567,9 @@ namespace Downloader_YouTube_Videos
             if (string.IsNullOrEmpty(_DownloadPath))
                 return;
 
-            string filePath = Path.Combine(_DownloadPath, lblTitle.Text + $".{cbExt.Text}");
+            string safeTitle = SanitizeFileName(lblTitle.Text);
+
+            string filePath = Path.Combine(_DownloadPath, $"{safeTitle}.{cbExt.Text}");
 
             if (File.Exists(filePath))// is already exist
             {
@@ -603,7 +607,7 @@ namespace Downloader_YouTube_Videos
 
         private async Task HandleDownloadAsync(string filePath)
         {
-            loadForm = new frmLoadScreen(ProgressBarStyle.Continuous, lblTitle.Text);
+            loadForm = new frmLoadScreen(ProgressBarStyle.Continuous, SanitizeFileName(lblTitle.Text));
 
             loadForm.Show();
 
@@ -617,7 +621,8 @@ namespace Downloader_YouTube_Videos
 
                 if (rc == DialogResult.Yes)
                 {
-                    Process.Start("explorer.exe", $"/select,\"{filePath}\"");
+                   Process.Start("explorer.exe", $"/select,\"{filePath}\"");
+                    
 
                 }
 
@@ -627,7 +632,15 @@ namespace Downloader_YouTube_Videos
 
         }
 
-        
+        private string SanitizeFileName(string fileName)
+        {
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                fileName = fileName.Replace(c.ToString(), "");
+            }
+
+            return fileName;
+        }
 
 
     }
