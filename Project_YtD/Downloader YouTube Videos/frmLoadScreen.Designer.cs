@@ -34,6 +34,7 @@
             this.lblPercent = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.picbLoad = new System.Windows.Forms.PictureBox();
+            this.lblSizeSpeed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picbLoad)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,9 +52,9 @@
             this.lblPleaseWait.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPleaseWait.Location = new System.Drawing.Point(7, 72);
             this.lblPleaseWait.Name = "lblPleaseWait";
-            this.lblPleaseWait.Size = new System.Drawing.Size(161, 29);
+            this.lblPleaseWait.Size = new System.Drawing.Size(179, 29);
             this.lblPleaseWait.TabIndex = 1;
-            this.lblPleaseWait.Text = "Please wait ...";
+            this.lblPleaseWait.Text = "Downloading ...";
             // 
             // lblPercent
             // 
@@ -85,11 +86,23 @@
             this.picbLoad.TabIndex = 2;
             this.picbLoad.TabStop = false;
             // 
+            // lblSizeSpeed
+            // 
+            this.lblSizeSpeed.AutoSize = true;
+            this.lblSizeSpeed.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSizeSpeed.Location = new System.Drawing.Point(235, 79);
+            this.lblSizeSpeed.Name = "lblSizeSpeed";
+            this.lblSizeSpeed.Size = new System.Drawing.Size(21, 20);
+            this.lblSizeSpeed.TabIndex = 5;
+            this.lblSizeSpeed.Text = "...";
+            this.lblSizeSpeed.Visible = false;
+            // 
             // frmLoadScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(614, 160);
+            this.Controls.Add(this.lblSizeSpeed);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblPercent);
             this.Controls.Add(this.picbLoad);
@@ -114,5 +127,6 @@
         private System.Windows.Forms.PictureBox picbLoad;
         private System.Windows.Forms.Label lblPercent;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblSizeSpeed;
     }
 }

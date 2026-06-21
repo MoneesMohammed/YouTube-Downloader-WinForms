@@ -148,5 +148,11 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YTDownloader.Core\YTDownloader.Core.csproj">
+      <Project>{fd3d5c0a-37c3-4a63-bb5a-faa74516eb5a}</Project>
+      <Name>YTDownloader.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

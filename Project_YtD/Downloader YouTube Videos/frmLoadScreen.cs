@@ -5,17 +5,19 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using YTDownloader.Core;
 
 
 namespace Downloader_YouTube_Videos
 {
     public partial class frmLoadScreen : Form
     {
-        private string _YtDlpPath = "";
+        
         private string _url = "";
 
         public string formats = "";
@@ -31,6 +33,7 @@ namespace Downloader_YouTube_Videos
                     lblPercent.Visible = true;
                     lblPleaseWait.Text = "Downloading ...";
                     lblTitle.Visible = true;
+                    lblSizeSpeed.Visible = true;
 
                     picbLoad.Image = Resources.DownloadIcon;
                     picbLoad.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -55,6 +58,7 @@ namespace Downloader_YouTube_Videos
             }
         }
 
+        private clsYtDlpService YtDlpService ;
 
         public frmLoadScreen(ProgressBarStyle Style , string Title)
         {
@@ -68,15 +72,15 @@ namespace Downloader_YouTube_Videos
             InitializeComponent();
 
             this.Style = Style;
-            _YtDlpPath = YtDlpPath;
+            YtDlpService = new clsYtDlpService(YtDlpPath);
             _url = url;
         }
 
-        public void UpdateProgress(int percent)
+        public void UpdateProgress(int percent,string sizeSpeed)
         {
             if (InvokeRequired)
             {
-                Invoke(new Action<int>(UpdateProgress), percent);
+                Invoke(new Action<int, string>(UpdateProgress), percent, sizeSpeed);
                 return;
             }
 
@@ -86,67 +90,22 @@ namespace Downloader_YouTube_Videos
 
             lblPercent.Text = percent + "%";
 
-            //if (progressBar1.Value >= 100)
-            //{
-            //    this.Close();
-            //}
+            lblSizeSpeed.Text = sizeSpeed;
 
-
-        }
-
-
-        public async Task<string> GetFormatsAsync(string url) //butSearch_Click
-        {
-            StringBuilder outputBuilder = new StringBuilder();
-
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = _YtDlpPath,
-                Arguments = $"-F \"{url}\" --no-warnings --quiet --no-playlist",
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                CreateNoWindow = true
-            };
-
-            Process process = new Process { StartInfo = psi };
-
-            process.OutputDataReceived += (s, e) =>
-            {
-                if (e.Data != null)
-                    outputBuilder.AppendLine(e.Data);
-            };
-
-            var tcs = new TaskCompletionSource<string>();
-
-            process.EnableRaisingEvents = true;
-            process.Exited += (s, e) =>
-            {
-                tcs.SetResult(outputBuilder.ToString());
-                process.Dispose();
-            };
-
-            process.Start();
-
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
-
-            return await tcs.Task;
         }
 
         private async void frmLoadScreen_Load(object sender, EventArgs e)
         {
             if (progressBar1.Style == ProgressBarStyle.Marquee)
             {
-                this.formats = await GetFormatsAsync(_url);
+                this.formats = await YtDlpService.GetFormatsAsync(_url);
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();
 
             }
 
-            
-
         }
+
     }
 }
