@@ -36,7 +36,7 @@
             this.txtLinkURL = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblIsReady = new System.Windows.Forms.Label();
-            this.butUpdate = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.cbResolution = new System.Windows.Forms.ComboBox();
             this.dgvFormats = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -85,17 +85,16 @@
             this.lblIsReady.TabIndex = 5;
             this.lblIsReady.Text = "Ready";
             // 
-            // butUpdate
+            // btnUpdate
             // 
-            this.butUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.butUpdate.Location = new System.Drawing.Point(12, 84);
-            this.butUpdate.Name = "butUpdate";
-            this.butUpdate.Size = new System.Drawing.Size(125, 32);
-            this.butUpdate.TabIndex = 6;
-            this.butUpdate.Text = "Check to Update";
-            this.butUpdate.UseVisualStyleBackColor = true;
-            this.butUpdate.Visible = false;
-            this.butUpdate.Click += new System.EventHandler(this.butUpdate_Click);
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.Location = new System.Drawing.Point(12, 84);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(125, 32);
+            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.butUpdate_Click);
             // 
             // cbResolution
             // 
@@ -289,7 +288,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 829);
+            this.ClientSize = new System.Drawing.Size(737, 822);
             this.Controls.Add(this.chbWithEditorVideo);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
@@ -300,7 +299,7 @@
             this.Controls.Add(this.dgvFormats);
             this.Controls.Add(this.butDownload);
             this.Controls.Add(this.cbResolution);
-            this.Controls.Add(this.butUpdate);
+            this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblIsReady);
             this.Controls.Add(this.butSearch);
             this.Controls.Add(this.butPaste);
@@ -326,7 +325,7 @@
         private System.Windows.Forms.Button butPaste;
         private System.Windows.Forms.Button butSearch;
         private System.Windows.Forms.Label lblIsReady;
-        private System.Windows.Forms.Button butUpdate;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.ComboBox cbResolution;
         private System.Windows.Forms.Button butDownload;
         private System.Windows.Forms.DataGridView dgvFormats;

@@ -32,7 +32,7 @@ namespace Downloader_YouTube_Videos
         private string _URL = "";
 
 
-        private clsYtDlpService YtDlpService ;
+        private clsYtDlpService YtDlpService;
 
         private void frmMain_Load(object sender, EventArgs e)
         {
@@ -44,6 +44,7 @@ namespace Downloader_YouTube_Videos
             _dtFormats.Columns.Add("Info");
 
             YtDlpService = new clsYtDlpService(_YtDlpPath);
+
         }
 
         private void _FillResolutionInComboBox()
@@ -369,7 +370,6 @@ namespace Downloader_YouTube_Videos
             loadForm.UpdateProgress(progress, info);
         }
 
-       
-
+        
     }
 }
